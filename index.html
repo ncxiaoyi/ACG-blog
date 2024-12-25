@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>奶茶小义</title>
+    <script>
+        // 判断设备类型
+        function redirectBasedOnDevice() {
+            const userAgent = navigator.userAgent.toLowerCase();
+            const isMobile = /mobile|android|iphone|ipad|ipod|blackberry|iemobile|opera mini/.test(userAgent);
+
+            if (isMobile) {
+                // 如果是手机设备，跳转到手机页面
+                window.location.href = "mobile.html";
+            } else {
+                // 如果是电脑设备，跳转到电脑页面
+                window.location.href = "desktop.html";
+            }
+        }
+
+        // 页面加载时执行跳转
+        window.onload = redirectBasedOnDevice;
+    </script>
+</head>
+<body>
+    <!-- <h1>Loading...</h1>
+    <p>Redirecting to the appropriate version of the website.</p> -->
+</body>
+</html>

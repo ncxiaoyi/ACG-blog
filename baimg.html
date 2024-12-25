@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BA图集</title>
+    <link href="css/imgs.css" rel="stylesheet">
+</head>
+
+<body>
+    <script src="js/cherry.js"></script>
+    <div class="container">
+        <!-- 左侧滑动图片 -->
+        <div class="slider-container">
+            <!-- 滑动图片容器 -->
+            <div class="slider-wrapper" id="slider-wrapper">
+                <!-- 图片占位符 -->
+                <img src="" alt="">
+                <img src="" alt="">
+                <img src="" alt="">
+            </div>
+
+            <!-- 左右切换按钮 -->
+            <div class="button-container">
+                <button id="prev-btn">&lt;</button>
+                <button id="next-btn">&gt;</button>
+            </div>
+        </div>
+
+        <!-- 右侧内容 -->
+        <div class="content-container">
+            <h1 id="title"></h1>
+            <p id="description"></p>
+            <p></p>
+            <p id="shu"></p>
+        </div>
+    </div>
+
+    <script>
+        // 参数初始化
+        const params = new URLSearchParams(window.location.search);
+        const shu = params.get('index');
+        const title = params.get('title') || '无';
+        const description = params.get('description') || '无';
+        const totalImages = parseInt(params.get('total')) || 0; // 总图片数
+        let currentIndex = parseInt(params.get('index')) || 0;
+
+        // DOM 元素
+        const sliderWrapper = document.getElementById('slider-wrapper');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const titleElement = document.getElementById('title');
+        const descriptionElement = document.getElementById('description');
+        const shuElement = document.getElementById('shu');
+
+        // 标记动画是否正在进行
+        let isSliding = false;
+
+        // 动态更新图片列表
+        function updateSlider() {
+            const prevIndex = (currentIndex - 1 + totalImages) % totalImages; // 上一张索引
+            const nextIndex = (currentIndex + 1) % totalImages; // 下一张索引
+
+            sliderWrapper.innerHTML = `
+                <img src="img/ba/${prevIndex}.png" alt="图片${prevIndex}">
+                <img src="img/ba/${currentIndex}.png" alt="图片${currentIndex}">
+                <img src="img/ba/${nextIndex}.png" alt="图片${nextIndex}">
+            `;
+
+            // 初始化滑动到中间的图片
+            sliderWrapper.style.transition = 'none';
+            sliderWrapper.style.transform = 'translateX(-100%)';
+
+            // 更新标题和描述
+            titleElement.textContent = `${title}`;
+            descriptionElement.textContent = `${description}`;
+            shuElement.textContent = `第 ${currentIndex+1} 张            共 ${totalImages} 张`;
+        }
+
+        // 切换到上一张图片
+        function slideToPrev() {
+            if (isSliding) return; // 如果正在滑动，阻止操作
+            isSliding = true; // 设置为滑动中
+            sliderWrapper.style.transition = 'transform 0.5s ease-in-out';
+            sliderWrapper.style.transform = 'translateX(0)'; // 滑动到上一张
+            currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+
+            // 滑动结束后更新图片
+            setTimeout(() => {
+                updateSlider();
+                isSliding = false; // 解除滑动状态
+            }, 500);
+        }
+
+        // 切换到下一张图片
+        function slideToNext() {
+            if (isSliding) return; // 如果正在滑动，阻止操作
+            isSliding = true; // 设置为滑动中
+            sliderWrapper.style.transition = 'transform 0.5s ease-in-out';
+            sliderWrapper.style.transform = 'translateX(-200%)'; // 滑动到下一张
+            currentIndex = (currentIndex + 1) % totalImages;
+
+            // 滑动结束后更新图片
+            setTimeout(() => {
+                updateSlider();
+                isSliding = false; // 解除滑动状态
+            }, 500);
+        }
+
+        // 绑定按钮事件
+        prevBtn.addEventListener('click', slideToPrev);
+        nextBtn.addEventListener('click', slideToNext);
+
+        // 初始加载
+        updateSlider();
+    </script>
+</body>
+
+</html>

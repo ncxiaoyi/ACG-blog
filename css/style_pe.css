@@ -1,0 +1,165 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: rgba(255, 215, 229, 0.8);
+    background-image: url('../img/background.jpg');
+    background-size: cover; /* 背景图片覆盖整个屏幕 */
+    background-position: top center; /* 将背景图片的位置固定为顶部居中 */
+    background-attachment: fixed; /* 背景固定，不随页面滚动 */
+    color: #333;
+    overflow-x: hidden;
+    height: 100vh;
+    animation: slide-up 1s ease-out;
+}
+
+
+
+/* 侧边栏样式 */
+.sidebar {
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    margin: 20px;
+    text-align: center;
+    opacity: 0;
+    animation: slide-up 1s ease-out forwards;
+    animation-delay: 0.5s;
+}
+
+.sidebar img {
+    width: 184.12px;
+    height: 134.84px;
+    transition: transform 0.3s ease;
+}
+
+.me-hover span {
+    margin: 0 auto;
+    display: block;
+    border-right: .08em solid #fff; /* 光标颜色更明显 */
+    width: 28ch; /* 对应字符长度 */
+    white-space: nowrap; /* 文本不换行 */
+    overflow: hidden; /* 超出范围的文本隐藏 */
+    animation: typing 3s steps(28, end), blink-caret .5s step-end infinite alternate; /* 动画时长可调整 */
+}
+
+.sidebar h2 {
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+.sidebar p {
+    font-size: 14px;
+    margin: 0;
+}
+
+/* 按钮区域 - 更新为 Flexbox */
+.buttons-wrapper {
+    display: flex;
+    justify-content: center; /* 居中按钮 */
+    gap: 20px; /* 每个按钮之间的间距 */
+    margin: 20px 0;
+    box-sizing: border-box;
+    opacity: 0;
+    animation: slide-up 1s ease-out forwards;
+    animation-delay: 1s;
+    padding-left: 100px; /* 向右移动一点点 */
+}
+
+.button {
+    background: rgba(255, 255, 255, 0.7);
+    padding: 15px 30px;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    white-space: nowrap;
+    width: 40px; /* 固定按钮宽度，使其能适应手机屏幕 */
+    text-align: center;
+}
+
+/* 帖子内容区域 */
+.posts {
+    padding: 20px;
+    box-sizing: border-box;
+    margin-bottom: 80px; /* 留出空间给按钮 */
+    opacity: 0;
+    animation: slide-up 1s ease-out forwards;
+    animation-delay: 1.5s;
+}
+
+.post {
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.post h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.post p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.post img {
+    width: 100%;
+    height: auto;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+/* 两列图片样式 */
+.image-gallery-two-columns {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 两列 */
+    gap: 15px; /* 图片之间的间距 */
+    margin-top: 15px;
+}
+
+.image-gallery-two-columns img {
+    width: 100%; /* 图片填满每列 */
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+/* 适配较小的屏幕 */
+@media (max-width: 600px) {
+    .button {
+        font-size: 14px;
+        padding: 12px 20px;
+        width: 90px; /* 按钮宽度稍微小一点 */
+    }
+
+    .post h2 {
+        font-size: 16px;
+    }
+
+    .post p {
+        font-size: 12px;
+    }
+
+    /* 一列布局，当屏幕小于 600px 时，图片为一列 */
+    .image-gallery-two-columns {
+        grid-template-columns: 1fr; /* 变成一列 */
+    }
+}
+
+/* 动画：所有容器从下方飞上来的效果 */
+@keyframes slide-up {
+    from {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

@@ -1,0 +1,49 @@
+/* 页面整体默认鼠标指针 */
+body {
+    cursor: url('../shubiao/正常选择.gif'), auto; /* 默认鼠标样式为正常选择 */
+}
+
+/* 禁用状态的鼠标指针 */
+button:disabled {
+    cursor: url('../shubiao/不可用.gif'), not-allowed; /* 设置禁用按钮的鼠标指针 */
+}
+
+/* 链接状态的鼠标指针 */
+a {
+    cursor: url('../shubiao/链接选择.gif'), pointer; /* 链接上鼠标为点击样式 */
+}
+
+/* 手写输入状态 */
+textarea, input[type="text"] {
+    cursor: url('../shubiao/手写.gif'), text; /* 文本框内的输入鼠标为手写状态 */
+}
+
+/* 正在忙碌的鼠标指针 */
+body.busy {
+    cursor: url('../shubiao/忙.gif'), wait; /* 当页面正在忙碌时显示忙碌指针 */
+}
+
+/* 当鼠标悬停在某个区域时，显示手指样式 */
+div.selectable:hover {
+    cursor: url('../shubiao/个人选择.gif'), pointer; /* 鼠标悬停时显示选择手指样式 */
+}
+
+/* 在后台选择区域时 */
+#backend-select {
+    cursor: url('../shubiao/后台选择.gif'), crosshair; /* 后台选择时显示十字形鼠标 */
+}
+
+/* 在候选项的区域中 */
+.candidate:hover {
+    cursor: url('../shubiao/候选.gif'), pointer; /* 候选项显示指针样式 */
+}
+
+/* 定位选择区域 */
+#location-picker {
+    cursor: url('../shubiao/位置选择.gif'), move; /* 定位区域显示移动鼠标 */
+}
+
+/* 文本选择区域 */
+p {
+    cursor: url('../shubiao/文本选择.gif'), text; /* 文本区域显示文本选择鼠标 */
+}
