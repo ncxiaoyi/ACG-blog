@@ -1,2 +1,2 @@
-# ACG-blog
-ACG blog
+# Personal anime blog
+Personal anime blog
